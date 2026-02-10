@@ -22,10 +22,9 @@
 
 ## 📸 Screenshots
 
-| **Home Page** | **Admin Dashboard** |
-|:---:|:---:|
-| ![Home Page](media/posts/Screenshot 2026-02-10 153145.png) |
-*(Add your screenshots to a folder named `screenshots` and update these paths)*
+| **Home Page** |
+|:---:|
+![Law2Rights Homepage](media/posts/Screenshot%202026-02-10%20153145.png)
 
 ---
 
