@@ -24,7 +24,7 @@
 
 | **Home Page** | **Admin Dashboard** |
 |:---:|:---:|
-| ![Home Page](path/to/screenshot1.png) | ![Admin Panel](path/to/screenshot2.png) |
+| ![Home Page](media/posts/Screenshot 2026-02-10 153145.png) |
 *(Add your screenshots to a folder named `screenshots` and update these paths)*
 
 ---
