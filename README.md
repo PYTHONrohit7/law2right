@@ -44,3 +44,56 @@ Follow these steps to set up the project locally on your machine.
 ```powershell
 git clone https://github.com/PYTHONrohit7/law2right.git
 cd law2right
+
+
+### 2. Create & Activate Virtual Environment
+It is recommended to use a virtual environment to manage dependencies.
+code
+Powershell
+# Create the environment
+python -m venv .venv
+
+# Activate it (Windows PowerShell)
+.\.venv\Scripts\Activate.ps1
+### 3. Install Dependencies
+code
+Powershell
+pip install -r requirements.txt
+### 4. Database Setup
+Apply migrations to create the database schema and create an admin user.
+code
+Powershell
+python manage.py migrate
+
+# Create the Superuser (Admin)
+python manage.py createsuperuser
+### 5. (Optional) Seed Initial Data
+If you have a custom script to populate categories:
+code
+Powershell
+python manage.py seed_categories
+### 6. Run the Server
+code
+Powershell
+python manage.py runserver
+Visit http://127.0.0.1:8000/ to view the site.
+Visit http://127.0.0.1:8000/admin/ to access the backend.
+### 📂 Project Structure
+code
+Text
+Law2Rights/
+├── core/                 # Core application logic
+├── law2rights/           # Project settings and configuration
+├── media/                # User uploaded images (posts, thumbnails)
+├── static/               # CSS, JS, and static images
+├── templates/            # HTML Templates
+├── db.sqlite3            # Database file
+├── manage.py             # Django command-line utility
+└── requirements.txt      # Project dependencies
+### 🤝 Contributing
+Contributions are welcome!
+Fork the project.
+Create your Feature Branch (git checkout -b feature/AmazingFeature).
+Commit your changes (git commit -m 'Add some AmazingFeature').
+Push to the Branch (git push origin feature/AmazingFeature).
+Open a Pull Request.
