@@ -1,0 +1,565 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Law2Rights — Know the Law, Own Your Rights!</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Merriweather:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1B3A57;
+      --gold: #C5A059;
+      --off-white: #F8F6F0;
+      --light-gray: #E8E5DE;
+    }
+
+    * {
+      font-family: 'Inter', sans-serif;
+    }
+
+    h1, h2, h3, h4, h5, h6, .heading {
+      font-family: 'Merriweather', serif;
+      color: var(--navy);
+      font-weight: 700;
+    }
+
+    body {
+      background-color: var(--off-white);
+    }
+
+    /* Navbar Styling */
+    .navbar {
+      background: linear-gradient(135deg, var(--navy) 0%, #2a4d6f 100%) !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 1rem 0;
+    }
+
+    .navbar-brand {
+      font-family: 'Merriweather', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold) !important;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-link {
+      color: #fff !important;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-link:hover {
+      color: var(--gold) !important;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Search Bar */
+    .navbar-search-input {
+      background: rgba(255, 255, 255, 0.95) !important;
+      border: 2px solid var(--gold) !important;
+      color: var(--navy) !important;
+      border-radius: 25px;
+      padding: 0.5rem 1rem !important;
+      font-size: 0.9rem;
+    }
+
+    .navbar-search-input::placeholder {
+      color: #999 !important;
+    }
+
+    .navbar-search-btn {
+      background: var(--gold) !important;
+      color: var(--navy) !important;
+      border: none !important;
+      border-radius: 25px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      padding: 0.5rem 1.5rem !important;
+      margin-left: 0.5rem;
+    }
+
+    .navbar-search-btn:hover {
+      background: #b8956f !important;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(197, 160, 89, 0.3);
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 600px;
+      background: linear-gradient(rgba(27, 58, 87, 0.75), rgba(27, 58, 87, 0.75)), 
+                  url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="pattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><rect fill="%23f8f6f0" width="100" height="100"/><path d="M0 50 Q25 25, 50 50 T100 50" fill="none" stroke="%231b3a57" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="1200" height="600" fill="%231b3a57"/><rect width="1200" height="600" fill="url(%23pattern)"/></svg>');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      text-align: center;
+      color: white;
+      z-index: 1;
+      animation: fadeInUp 1s ease;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero h1 {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 700;
+      color: white;
+      margin-bottom: 1rem;
+      letter-spacing: -1px;
+      line-height: 1.2;
+    }
+
+    .hero-search-wrapper {
+      margin-top: 3rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-search-input {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 50px;
+      background: white;
+      color: var(--navy);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .hero-search-input:focus {
+      outline: none;
+      box-shadow: 0 8px 40px rgba(197, 160, 89, 0.4);
+      border: none;
+    }
+
+    .hero-search-input::placeholder {
+      color: #999;
+    }
+
+    /* Mission Section */
+    .mission-section {
+      padding: 4rem 0;
+      background: white;
+      margin-top: -30px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .mission-content {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .mission-content h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .mission-content p {
+      font-size: 1.1rem;
+      color: #555;
+      line-height: 1.8;
+    }
+
+    /* Cards Section */
+    .cards-section {
+      padding: 4rem 0;
+    }
+
+    .section-title {
+      font-family: 'Merriweather', serif;
+      font-size: 2rem;
+      color: var(--navy);
+      margin-bottom: 3rem;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 80px;
+      height: 4px;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+
+    /* Blog Card */
+    .blog-card {
+      background: white;
+      border: none;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      height: 100%;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+    }
+
+    .blog-card-image {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--light-gray) 0%, #d0cdc5 100%);
+    }
+
+    .blog-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .blog-card:hover .blog-card-image img {
+      transform: scale(1.08);
+    }
+
+    .blog-card-category {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: var(--gold);
+      color: var(--navy);
+      padding: 0.4rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      z-index: 2;
+    }
+
+    .blog-card-body {
+      padding: 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .blog-card-title {
+      font-family: 'Merriweather', serif;
+      font-size: 1.3rem;
+      color: var(--navy);
+      margin-bottom: 0.8rem;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .blog-card-title a {
+      color: var(--navy);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .blog-card-title a:hover {
+      color: var(--gold);
+    }
+
+    .blog-card-excerpt {
+      color: #666;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      flex-grow: 1;
+    }
+
+    .blog-card-meta {
+      font-size: 0.85rem;
+      color: #999;
+      margin-bottom: 1rem;
+    }
+
+    .blog-card-btn {
+      background: var(--gold);
+      color: var(--navy);
+      border: none;
+      border-radius: 8px;
+      padding: 0.6rem 1.2rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+      align-self: flex-start;
+    }
+
+    .blog-card-btn:hover {
+      background: #b8956f;
+      transform: translateX(4px);
+      color: var(--navy);
+    }
+
+    /* Featured Box */
+    .featured-box {
+      background: linear-gradient(135deg, var(--navy) 0%, #2a4d6f 100%);
+      border-radius: 12px;
+      padding: 2rem;
+      color: white;
+      box-shadow: 0 8px 24px rgba(27, 58, 87, 0.2);
+    }
+
+    .featured-box h3 {
+      color: white;
+      margin-bottom: 1.5rem;
+    }
+
+    .featured-box::before {
+      content: '\f155';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      font-size: 3rem;
+      opacity: 0.1;
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+    }
+
+    .featured-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .featured-list-item {
+      padding: 0.8rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .featured-list-item:last-child {
+      border-bottom: none;
+    }
+
+    .featured-list-item a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      display: block;
+    }
+
+    .featured-list-item a:hover {
+      color: var(--gold);
+      padding-left: 0.5rem;
+    }
+
+    /* Exam Corner */
+    .exam-corner {
+      background: white;
+      border-left: 5px solid var(--gold);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      position: relative;
+    }
+
+    .exam-corner-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .exam-corner-icon {
+      font-size: 2rem;
+      color: var(--gold);
+      margin-right: 1rem;
+    }
+
+    .exam-corner h3 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .exam-corner-content {
+      margin-top: 1.5rem;
+    }
+
+    .exam-item {
+      margin-bottom: 1.5rem;
+    }
+
+    .exam-item a {
+      color: var(--navy);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .exam-item a:hover {
+      color: var(--gold);
+    }
+
+    .exam-item-date {
+      font-size: 0.85rem;
+      color: #999;
+      margin-top: 0.3rem;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, var(--navy) 0%, #2a4d6f 100%);
+      color: white;
+      margin-top: 5rem;
+      padding: 3rem 0 1.5rem;
+    }
+
+    footer a {
+      color: var(--gold);
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+
+    footer p {
+      margin-bottom: 0.5rem;
+    }
+
+    .social-links {
+      margin-bottom: 1.5rem;
+    }
+
+    .social-links a {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background: rgba(197, 160, 89, 0.2);
+      border-radius: 50%;
+      text-align: center;
+      line-height: 40px;
+      margin: 0 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      background: var(--gold);
+      color: var(--navy);
+      transform: translateY(-3px);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        height: 400px;
+      }
+
+      .hero h1 {
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+      }
+
+      .navbar-search-input {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'core:home' %}">Law2Rights</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMain">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="{% url 'core:home' %}">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'core:about' %}">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'core:contact' %}">Contact</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="catDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
+          <ul class="dropdown-menu" aria-labelledby="catDropdown">
+            {% for cat in categories %}
+              <li><a class="dropdown-item" href="{% url 'core:category_list' cat.slug %}">{{ cat.name }}</a></li>
+            {% endfor %}
+          </ul>
+        </li>
+      </ul>
+
+      <form class="d-flex ms-lg-3" method="get" action="{% url 'core:search' %}">
+        <input class="navbar-search-input" name="q" type="search" placeholder="Search legal topics..." aria-label="Search">
+        <button class="navbar-search-btn" type="submit"><i class="fas fa-search"></i></button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<!-- Main Content -->
+<main>
+  {% block content %}{% endblock %}
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="text-center">
+      <p class="mb-3"><strong style="font-family: 'Merriweather', serif; font-size: 1.3rem;">Law2Rights</strong></p>
+      <p class="mb-3">© {% now "Y" %} Law2Rights — Know the Law, Own Your Rights!</p>
+      <div class="social-links">
+        <a href="https://facebook.com" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://instagram.com" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://twitter.com" title="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://medium.com" title="Medium"><i class="fab fa-medium"></i></a>
+        <a href="https://t.me/" title="Telegram"><i class="fab fa-telegram"></i></a>
+        <a href="https://reddit.com" title="Reddit"><i class="fab fa-reddit"></i></a>
+      </div>
+      <p><a href="{% url 'core:privacy_policy' %}">Privacy Policy</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

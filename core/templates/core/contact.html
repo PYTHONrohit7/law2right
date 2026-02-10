@@ -1,0 +1,209 @@
+{% extends "core/base.html" %}
+{% block content %}
+
+<style>
+  .contact-container {
+    max-width: 900px;
+    margin: 4rem auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+
+  .contact-row {
+    display: flex;
+    min-height: 500px;
+  }
+
+  .contact-info {
+    background: #1B3A57;
+    color: white;
+    padding: 3rem 2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .contact-info h2 {
+    font-family: 'Merriweather', serif;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: white;
+  }
+
+  .contact-info p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  .contact-details {
+    margin-bottom: 2rem;
+  }
+
+  .contact-detail {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .contact-detail i {
+    font-size: 1.2rem;
+    margin-right: 1rem;
+    color: #C5A059;
+    width: 20px;
+  }
+
+  .contact-detail span {
+    font-size: 1rem;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .social-links a {
+    color: white;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .social-links a:hover {
+    color: #C5A059;
+    transform: translateY(-3px);
+  }
+
+  .contact-form {
+    padding: 3rem 2rem;
+    flex: 1;
+    background: white;
+  }
+
+  .contact-form h3 {
+    font-family: 'Merriweather', serif;
+    color: #1B3A57;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-label {
+    font-weight: 600;
+    color: #333;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .form-control {
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    width: 100%;
+  }
+
+  .form-control:focus {
+    outline: none;
+    border-color: #C5A059;
+    box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.1);
+  }
+
+  .form-control::placeholder {
+    color: #999;
+  }
+
+  .btn-send {
+    background: #1B3A57;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .btn-send:hover {
+    background: #0f2a3f;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(27, 58, 87, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    .contact-row {
+      flex-direction: column;
+    }
+
+    .contact-info, .contact-form {
+      padding: 2rem 1.5rem;
+    }
+
+    .contact-info h2 {
+      font-size: 2rem;
+    }
+  }
+</style>
+
+<div class="container">
+  <div class="contact-container">
+    <div class="contact-row">
+      <!-- Info Side -->
+      <div class="contact-info">
+        <h2>Let’s Talk</h2>
+        <p>Have a legal query or exam question? Send us a message.</p>
+        <div class="contact-details">
+          <div class="contact-detail">
+            <i class="fas fa-envelope"></i>
+            <span>contact@law2rights.com</span>
+          </div>
+          <div class="contact-detail">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>India</span>
+          </div>
+        </div>
+        <div class="social-links">
+          <a href="https://instagram.com" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://twitter.com" title="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+
+      <!-- Form Side -->
+      <div class="contact-form">
+        <h3>Send Message</h3>
+        <form method="post">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="{{ form.name.id_for_label }}" class="form-label">Name</label>
+            {{ form.name }}
+          </div>
+          <div class="form-group">
+            <label for="{{ form.email.id_for_label }}" class="form-label">Email</label>
+            {{ form.email }}
+          </div>
+          <div class="form-group">
+            <label for="{{ form.subject.id_for_label }}" class="form-label">Subject</label>
+            {{ form.subject }}
+          </div>
+          <div class="form-group">
+            <label for="{{ form.message.id_for_label }}" class="form-label">Message</label>
+            {{ form.message }}
+          </div>
+          <button type="submit" class="btn-send">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

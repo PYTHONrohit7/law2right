@@ -1,0 +1,157 @@
+{% extends "core/base.html" %}
+{% block content %}
+
+<style>
+  .about-hero { background: white; padding: 4.5rem 0; text-align: center; }
+  .about-hero h1 { font-family: 'Playfair Display', serif; color: var(--navy); font-size: clamp(1.8rem, 3.6vw, 2.6rem); margin-bottom: 1rem; }
+  .about-hero p { color: #333; font-size: 1.05rem; max-width: 900px; margin: 0 auto; }
+
+  .founder { display: flex; gap: 2rem; align-items: center; max-width: 1100px; margin: 3rem auto; padding: 2rem; background: #fff; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.06); }
+  .founder .photo { width: 220px; flex: 0 0 220px; }
+  .founder .photo img { width: 100%; height: auto; border-radius: 8px; display:block; }
+  .founder .bio { flex: 1; }
+  .founder .bio h3 { font-family: 'Playfair Display', serif; color: var(--navy); margin-bottom: 0.25rem; }
+  .founder .bio p.title { color: #666; margin-bottom: 1rem; font-weight:600; }
+
+  .pillars { max-width: 1100px; margin: 3rem auto 4rem; }
+  .pillar-card { background: #fff; border-radius: 12px; padding: 1.5rem; transition: transform .28s ease, box-shadow .28s ease, background .28s ease; box-shadow: 0 6px 18px rgba(0,0,0,0.06); height:100%; }
+  .pillar-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); background: rgba(197,160,89,0.04); }
+  .pillar-icon { width:48px; height:48px; display:inline-flex; align-items:center; justify-content:center; border-radius:8px; background:var(--light-gray); color:var(--navy); margin-right:12px; font-size:1.15rem; }
+  .pillar-title { font-family: 'Merriweather', serif; color:var(--navy); font-size:1.05rem; margin:0 0 .35rem 0; }
+  .pillar-desc { color:#444; font-size:0.95rem; margin:0; }
+
+  .mission-footer { background: var(--navy); color: white; padding: 2.5rem 1rem; text-align: center; border-radius: 8px; max-width:1100px; margin: 2rem auto 4rem; }
+  .mission-footer p { margin:0; font-size:1.05rem; line-height:1.6; }
+
+  @media (max-width: 992px) {
+    .founder { flex-direction: column; text-align:center; }
+    .founder .photo { width:180px; }
+    .pillars .col-md-4, .pillars .col-md-6 { margin-bottom: 1rem; }
+  }
+
+</style>
+
+<!-- Hero -->
+<section class="about-hero">
+  <div class="container">
+    <h1>About Law2Rights</h1>
+    <p>Law affects everyone, but understanding it shouldn’t be complicated. We bring you simple, clear, and practical legal insights.</p>
+  </div>
+</section>
+
+<!-- Founder -->
+<section class="container">
+  <div class="founder">
+    <div class="photo">
+      <!-- Placeholder: Lady Justice SVG -->
+      <img src="https://images.unsplash.com/photo-1532996126367-5c0b9c8f6b75?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Dipasha Jain - Founder">
+    </div>
+    <div class="bio">
+      <h3>Dipasha Jain</h3>
+      <p class="title">Founder</p>
+      <p style="color:#444;">Dipasha founded Law2Rights to demystify legal principles and make them accessible to everyone. With a passion for education and justice, Dipasha leads a team dedicated to clear, practical legal guidance.</p>
+    </div>
+  </div>
+</section>
+
+<!-- The 7 Pillars -->
+<section class="pillars">
+  <div class="container">
+    <h2 class="mb-4" style="font-family:'Merriweather', serif; color:var(--navy);">What We Offer — The 7 Pillars</h2>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        <div class="pillar-card d-flex flex-column h-100">
+          <div class="d-flex align-items-center mb-2">
+            <div class="pillar-icon"><i class="fas fa-gavel"></i></div>
+            <div>
+              <h4 class="pillar-title">Indian Courts & Legal System</h4>
+            </div>
+          </div>
+          <p class="pillar-desc">India’s legal system is vast. From landmark judgments to court rules, we simplify it all.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="pillar-card d-flex flex-column h-100">
+          <div class="d-flex align-items-center mb-2">
+            <div class="pillar-icon"><i class="fas fa-book"></i></div>
+            <div>
+              <h4 class="pillar-title">Law Career & Education</h4>
+            </div>
+          </div>
+          <p class="pillar-desc">Dreaming of a law career? From LLB & LLM courses to top colleges, we guide you at every step.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="pillar-card d-flex flex-column h-100">
+          <div class="d-flex align-items-center mb-2">
+            <div class="pillar-icon"><i class="fas fa-graduation-cap"></i></div>
+            <div>
+              <h4 class="pillar-title">Law Exams & Preparation</h4>
+            </div>
+          </div>
+          <p class="pillar-desc">Cracking exams like CLAT, AILET, & Judiciary is tough, but possible with our syllabus breakdowns and tips.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="pillar-card d-flex flex-column h-100">
+          <div class="d-flex align-items-center mb-2">
+            <div class="pillar-icon"><i class="fas fa-balance-scale"></i></div>
+            <div>
+              <h4 class="pillar-title">Core Law Subjects</h4>
+            </div>
+          </div>
+          <p class="pillar-desc">We break down IPC, CRPC, Evidence Act, and Contract Law into easy-to-understand explanations.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="pillar-card d-flex flex-column h-100">
+          <div class="d-flex align-items-center mb-2">
+            <div class="pillar-icon"><i class="fas fa-briefcase"></i></div>
+            <div>
+              <h4 class="pillar-title">Career & Opportunities</h4>
+            </div>
+          </div>
+          <p class="pillar-desc">Explore paths in Law Firms, Corporate Law, Litigation, and Government Jobs.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="pillar-card d-flex flex-column h-100">
+          <div class="d-flex align-items-center mb-2">
+            <div class="pillar-icon"><i class="fas fa-shield-alt"></i></div>
+            <div>
+              <h4 class="pillar-title">Legal Awareness</h4>
+            </div>
+          </div>
+          <p class="pillar-desc">Know your rights! We simplify Consumer Rights, Cyber Laws, and everyday legal issues.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="pillar-card d-flex flex-column h-100">
+          <div class="d-flex align-items-center mb-2">
+            <div class="pillar-icon"><i class="fas fa-newspaper"></i></div>
+            <div>
+              <h4 class="pillar-title">Daily Legal News</h4>
+            </div>
+          </div>
+          <p class="pillar-desc">Stay ahead with real-time court updates and trending cases. Staying informed is power!</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Mission Footer / Closing Quote -->
+<section class="mission-footer">
+  <div class="container">
+    <p>Justice isn’t just served in courtrooms—it begins with awareness. At Law2Rights, we don’t just explain the law, we empower you with it. Because knowledge isn’t power until you use it!</p>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends "core/base.html" %}
+{% block content %}
+
+<style>
+  .post-container { max-width: 1100px; margin: 2.5rem auto; padding: 0 1rem; }
+  .post-header { width: 100%; padding: 2rem 0; border-bottom: 1px solid rgba(0,0,0,0.06); }
+  .post-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.6vw, 2.8rem); color: var(--navy); margin: 0 0 0.5rem 0; }
+  .post-meta { color: #6c757d; font-size: 0.95rem; }
+
+  .post-grid { display: grid; grid-template-columns: 1fr 360px; gap: 2.5rem; align-items: start; margin-top: 1.5rem; }
+  .post-main { width: 100%; }
+  .post-featured { width: 100%; height: auto; border-radius: 8px; overflow: hidden; margin-bottom: 1.25rem; }
+  .post-featured img { width: 100%; height: auto; display: block; }
+
+  .post-content { font-size: 1.1rem; line-height: 1.6; color: #333; }
+  .post-content p { margin-bottom: 1rem; max-width: 70ch; }
+  .post-content blockquote { border-left: 4px solid var(--gold); padding-left: 1rem; color: #333; background: rgba(197,160,89,0.05); }
+
+  .sidebar { background: none; }
+  .sidebar .card { border-radius: 10px; box-shadow: 0 6px 18px rgba(0,0,0,0.06); }
+  .sidebar .list-group a { color: var(--navy); text-decoration: none; }
+  .sidebar .list-group a:hover { color: var(--gold); margin-left: 4px; transition: margin 0.15s ease; }
+  .sidebar-sticky { position: sticky; top: 120px; }
+
+  /* Share widget */
+  .share-widget { position: fixed; left: 16px; top: 200px; display: flex; flex-direction: column; gap: 8px; z-index: 999; }
+  .share-widget a { display: inline-flex; width:44px; height:44px; align-items:center; justify-content:center; border-radius:6px; background:#fff; box-shadow:0 6px 18px rgba(0,0,0,0.08); color:var(--navy); text-decoration:none; }
+  .share-widget a:hover { background:var(--gold); color:var(--navy); transform:translateY(-4px); }
+
+  @media (max-width: 992px) {
+    .post-grid { grid-template-columns: 1fr; }
+    .share-widget { display: none; }
+    .sidebar-sticky { position: static; }
+  }
+</style>
+
+<div class="post-container">
+  <header class="post-header">
+    <h1 class="post-title">{{ post.title }}</h1>
+    <div class="post-meta">By {% if post.author %}{{ post.author.get_full_name|default:post.author.username }}{% else %}Admin{% endif %} • {{ post.created_at|date:"F d, Y" }} • <a href="{% url 'core:category_list' post.category.slug %}">{{ post.category.name }}</a></div>
+  </header>
+
+  <div class="post-grid">
+    <main class="post-main">
+      {% if post.image %}
+        <div class="post-featured">
+          <img src="{{ post.image.url }}" alt="{{ post.title }}">
+        </div>
+      {% endif %}
+
+      <div class="post-content">{{ post.content|safe }}</div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="sidebar-sticky">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title">Related Posts</h5>
+            <ul class="list-group list-group-flush">
+              {% for rel in post.category.posts.all %}
+                {% if rel.pk != post.pk %}
+                  <li class="list-group-item"><a href="{% url 'core:post_detail' rel.slug %}">{{ rel.title }}</a></li>
+                {% endif %}
+              {% empty %}
+                <li class="list-group-item text-muted">No related posts available.</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Categories</h5>
+            <ul class="list-group list-group-flush">
+              {% for cat in categories %}
+                <li class="list-group-item"><a href="{% url 'core:category_list' cat.slug %}">{{ cat.name }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- Share widget -->
+<div class="share-widget d-none d-lg-flex" aria-hidden="true">
+  <a href="#" title="Share on Facebook"><i class="fab fa-facebook-f"></i></a>
+  <a href="#" title="Share on Twitter"><i class="fab fa-twitter"></i></a>
+  <a href="#" title="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+</div>
+
+{% endblock %}

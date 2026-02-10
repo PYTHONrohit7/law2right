@@ -1,0 +1,131 @@
+{% extends "core/base.html" %}
+{% block content %}
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Know the Law, Own Your Rights</h1>
+    <form method="get" action="{% url 'core:search' %}" class="hero-search-wrapper">
+      <input type="search" name="q" class="hero-search-input" placeholder="Search legal topics, rights, and guidance..." required>
+    </form>
+  </div>
+</section>
+
+<!-- Mission Section -->
+<section class="mission-section">
+  <div class="container">
+    <div class="mission-content">
+      <h2>Our Mission</h2>
+      <p>Law affects everyone, but understanding it shouldn't be complicated. We bring you simple, clear, and practical legal insights to empower you with knowledge about your rights.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Latest News Section -->
+<section class="cards-section">
+  <div class="container">
+    <h2 class="section-title">Latest News & Updates</h2>
+    
+    {% if latest_news %}
+      <div class="row g-4 mb-5">
+        {% for post in latest_news %}
+          <div class="col-lg-4 col-md-6">
+            <div class="blog-card">
+              <div class="blog-card-image">
+                {% if post.image %}
+                  <img src="{{ post.image.url }}" alt="{{ post.title }}">
+                {% else %}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250" style="width:100%;height:100%;">
+                    <rect fill="#d0cdc5" width="400" height="250"/>
+                    <text x="50%" y="50%" font-family="'Merriweather', serif" font-size="18" fill="#999" text-anchor="middle" dominant-baseline="middle">
+                      Legal News &amp; Insights
+                    </text>
+                  </svg>
+                {% endif %}
+                <span class="blog-card-category">{{ post.category.name }}</span>
+              </div>
+              <div class="blog-card-body">
+                <h3 class="blog-card-title">
+                  <a href="{% url 'core:post_detail' post.slug %}">{{ post.title }}</a>
+                </h3>
+                <p class="blog-card-meta"><i class="far fa-calendar-alt me-2"></i>{{ post.created_at|date:"F d, Y" }}</p>
+                <p class="blog-card-excerpt">{{ post.content|striptags|truncatewords:20 }}</p>
+                <a href="{% url 'core:post_detail' post.slug %}" class="blog-card-btn">Read More <i class="fas fa-arrow-right ms-2"></i></a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="alert alert-info text-center py-5">
+        <i class="fas fa-newspaper fa-2x mb-3 d-block"></i>
+        <p class="mb-0">No news available yet. Check back soon for legal updates and insights.</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- Featured & Exam Corner Section -->
+<section class="cards-section bg-white">
+  <div class="container">
+    <div class="row g-4">
+      <!-- Featured Posts -->
+      <div class="col-lg-8">
+        <h2 class="section-title">Featured Articles</h2>
+        
+        {% if featured_posts %}
+          <div class="featured-box">
+            <h3><i class="fas fa-star me-2"></i>Must-Read Legal Guides</h3>
+            <ul class="featured-list">
+              {% for post in featured_posts %}
+                <li class="featured-list-item">
+                  <a href="{% url 'core:post_detail' post.slug %}">
+                    {{ post.title }}
+                  </a>
+                  <small style="color: rgba(255, 255, 255, 0.7); display: block; margin-top: 0.3rem;">{{ post.created_at|date:"M d, Y" }}</small>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% else %}
+          <div class="alert alert-info">
+            <p class="mb-0"><i class="fas fa-info-circle me-2"></i>Featured articles will appear here soon.</p>
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Exam Corner Sidebar -->
+      <div class="col-lg-4">
+        <div class="exam-corner">
+          <div class="exam-corner-header">
+            <div class="exam-corner-icon">
+              <i class="fas fa-book-open"></i>
+            </div>
+            <h3>Exam Corner</h3>
+          </div>
+          
+          {% if exam_highlight %}
+            <div class="exam-corner-content">
+              {% for item in exam_highlight %}
+                <div class="exam-item">
+                  <a href="{% url 'core:post_detail' item.slug %}">
+                    <i class="fas fa-graduation-cap me-2"></i>{{ item.title }}
+                  </a>
+                  <div class="exam-item-date">{{ item.created_at|date:"M d, Y" }}</div>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <div class="exam-corner-content">
+              <p style="color: #999; margin: 0;">
+                <i class="fas fa-hourglass-half me-2"></i>Exam preparation tips coming soon!
+              </p>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
