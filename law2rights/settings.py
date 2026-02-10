@@ -7,7 +7,12 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'replace-this-with-a-secure-sec
 # Use environment variables in production. Set DJANGO_DEBUG to 'False' on the server.
 DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
 # Provide a comma-separated host list via DJANGO_ALLOWED_HOSTS when deploying
-ALLOWED_HOSTS = os.environ.get('law2right.onrender.com','.onrender.com','127.0.0.1','localhost').split(',')
+ALLOWED_HOSTS = [
+    "law2right.onrender.com",
+    ".onrender.com",
+    "127.0.0.1",
+    "localhost",
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
