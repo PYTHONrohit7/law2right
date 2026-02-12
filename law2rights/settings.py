@@ -5,7 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'replace-this-with-a-secure-secret-in-prod')
 # Use environment variables in production. Set DJANGO_DEBUG to 'False' on the server.
-DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
+DEBUG = True
 # Provide a comma-separated host list via DJANGO_ALLOWED_HOSTS when deploying
 ALLOWED_HOSTS = [
     "law2right.onrender.com",
@@ -15,6 +15,7 @@ ALLOWED_HOSTS = [
 ]
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -77,3 +78,15 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+JAZZMIN_SETTINGS = {
+    "site_title": "Law2Rights Admin",
+    "site_header": "Law2Rights",
+    "site_brand": "Law2Rights",
+    "welcome_sign": "Welcome to the Legal Command Center",
+    "copyright": "Law2Rights Ltd",
+    "topmenu_links": [
+        {"name": "Home", "url": "admin:index", "permissions": ["auth.view_user"]},
+        {"name": "Contact", "url": "admin:core_contactsubmission_changelist", "permissions": ["core.view_contactsubmission"]},
+    ],
+}
